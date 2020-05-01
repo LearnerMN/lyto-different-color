@@ -4,9 +4,12 @@ import mss
 from PIL import Image
 from collections import defaultdict
         
-mon = {'top': 400, 'left': 120, 'width': 350, 'height': 400}
+
+monitor_number = 2
 
 with mss.mss() as sct:
+	monitor = sct.monitors[monitor_number]
+	mon = {'top': monitor["top"] + 400, 'left': monitor["left"] + 120, 'width': 350, 'height': 400, 'mon': monitor_number}
 	while True:
 	    
 	    img = np.array(sct.grab(mon))
